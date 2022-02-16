@@ -34,7 +34,7 @@ public class JsonPars {
             ex.printStackTrace();
         }
     }
-    public void ReadFile()
+    public void ParsObject()
     {
             jsonObject.forEach((key,value)->{state = new State();state.Name = key.toString();//System.out.println(key);
             CheckArray((JSONArray)value);

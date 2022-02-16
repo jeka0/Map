@@ -5,9 +5,10 @@ import javax.swing.*;
 public class GUI extends JFrame {
     public GUI()
     {
-        super("My First Window"); //Заголовок окна
-        setBounds(100, 100, 700, 600);
+        super("Window"); //Заголовок окна
+        setBounds(200, 100, 1500, 900);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
 }
+
