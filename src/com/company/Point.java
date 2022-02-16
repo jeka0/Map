@@ -1,18 +1,17 @@
 package com.company;
+import JMPL.*;
 
+import java.awt.geom.Point2D;
 
 public class Point {
     public Point(){};
     public Point(double x,double y){this.x =x; this.y=y;TranslateCoordinates();}
     public double x;
     public double y;
-    private static final int    EARTH_RADIUS    = 6371;
-    private static final double FOCAL_LENGTH    = 500;
-    private static final int    IMAGE_PADDING   = 50;
-    public int newX;
-    public int newY;
+    Point2D.Double newXY;
     public void TranslateCoordinates()
     {
+        MercatorProjection projection = new MercatorProjection();
         double latitude = y;
         double longitude = x;
 
@@ -20,15 +19,10 @@ public class Point {
         latitude = latitude * Math.PI / 180;
         longitude = longitude * Math.PI / 180;
 
-        double x = EARTH_RADIUS * Math.sin(latitude) * Math.cos(longitude);
-        double y = EARTH_RADIUS * Math.sin(latitude) * Math.sin(longitude);
-        double z = EARTH_RADIUS * Math.cos(latitude);
-
-        double projectedX = x * FOCAL_LENGTH / (FOCAL_LENGTH + z);
-        double projectedY = y * FOCAL_LENGTH / (FOCAL_LENGTH + z);
-
-        // scale the map bigger
-        newX = (int) Math.round(projectedX+1200);
-        newY = (int) Math.round(projectedY+700);
+        Point2D.Double d = projection.project(longitude, latitude, new Point2D.Double());
+        d.y=-(d.y-2);
+        int magnifiedX = (int) Math.round((3.5+d.x)*430);
+        int magnifiedY = (int) Math.round(d.y*430);
+        newXY = new Point2D.Double(magnifiedX, magnifiedY);
     }
 }

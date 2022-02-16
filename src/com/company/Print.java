@@ -13,7 +13,7 @@ public class Print extends JPanel {
             for (var points : state.Border) {
                 Polygon polygon = new Polygon();
                 for (Point a : points) {
-                    polygon.addPoint(a.newX, a.newY);
+                    polygon.addPoint((int)a.newXY.getX(), (int)a.newXY.getY());
                 }
                 g.drawPolygon(polygon);
             }
