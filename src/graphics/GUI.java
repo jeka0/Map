@@ -1,4 +1,4 @@
-package com.company;
+package graphics;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;

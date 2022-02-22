@@ -1,24 +1,25 @@
-package com.company;
+package database;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
 
+import classes.Point;
+import classes.State;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
-import java.io.FileReader;
-import java.util.ArrayList;
+
 import java.util.LinkedList;
 
 public class JsonPars {
     private JSONObject jsonObject;
-    public LinkedList<State> States = new LinkedList<>();
-    private State state, oldState;
+    public DB db = DB.db;
+    private State state;
     private LinkedList<Point> nowPoints;
     private boolean NotNew = false;
-    JsonPars(final String filePath)
+    public JsonPars(final String filePath)
     {
         try {
             FileReader reader = new FileReader(filePath);
@@ -40,7 +41,7 @@ public class JsonPars {
             CheckArray((JSONArray)value);
             state.Border.add(nowPoints);
             nowPoints = null;
-            States.add(state);
+                db.States.add(state);
         });
     }
     public void CheckArray(JSONArray array)

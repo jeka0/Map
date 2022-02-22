@@ -1,22 +1,22 @@
-package com.company;
-import java.util.Collection;
-import java.util.Iterator;
+package classes;
+
+import java.awt.*;
 import java.util.LinkedList;
-import java.util.ListIterator;
 
 public class State {
+    public LinkedList<LinkedList<Point>> Border = new LinkedList<>();
+    public LinkedList<Polygon> polygons = new LinkedList<>();
+    public String Name;
     public State(){}
     public State(String Name,LinkedList<LinkedList<Point>> Border){this.Name = Name; this.Border = Border;}
-    public String Name;
-    public LinkedList<LinkedList<Point>> Border = new LinkedList<>();
     public void Increase(double num)
     {
         for(LinkedList<Point> List:Border)
         {
             for(Point point: List)
             {
-                point.newXY.x=(int) Math.round(point.newXY.getX()*num);
-                point.newXY.y=(int) Math.round(point.newXY.getY()*num);
+                point.XY.x=(int) Math.round(point.XY.getX()*num);
+                point.XY.y=(int) Math.round(point.XY.getY()*num);
             }
         }
     }
@@ -26,8 +26,8 @@ public class State {
         {
             for(Point point: List)
             {
-                point.newXY.y+=shiftY;
-                point.newXY.x+=shiftX;
+                point.XY.y+=shiftY;
+                point.XY.x+=shiftX;
             }
         }
     }

@@ -1,16 +1,26 @@
 package com.company;
 
+import classes.State;
+import database.DB;
+import database.JsonPars;
+import database.ParsTweets;
+import graphics.GUI;
+import graphics.Print;
+
 import java.util.LinkedList;
 
 public class Main {
 
     public static void main(String[] args) {
+        DB db = new DB();
         JsonPars pars = new JsonPars("Data\\states.json");
+        ParsTweets tPars = new ParsTweets();
         pars.ParsObject();
-        ChangeStatesPosition(pars.States);
+        tPars.ReadFile("Data\\cali_tweets2014.txt");
+
+        ChangeStatesPosition(DB.db.States);
         GUI app = new GUI();
         Print print = new Print();
-        print.States = pars.States;
         app.add(print);
         app.setVisible(true);
     }
