@@ -1,8 +1,10 @@
 package com.company;
 
 import classes.State;
+import classes.Tweet;
 import database.DB;
 import database.JsonPars;
+import database.ParsCSV;
 import database.ParsTweets;
 import graphics.GUI;
 import graphics.Print;
@@ -15,8 +17,11 @@ public class Main {
         DB db = new DB();
         JsonPars pars = new JsonPars("Data\\states.json");
         ParsTweets tPars = new ParsTweets();
+        ParsCSV parsCSV = new ParsCSV();
         pars.ParsObject();
         tPars.ReadFile("Data\\cali_tweets2014.txt");
+        parsCSV.ReadFile("Data\\sentiments.csv");
+        Calculations.DetermineMoodOfMessage();
 
         ChangeStatesPosition(DB.db.States);
         GUI app = new GUI();

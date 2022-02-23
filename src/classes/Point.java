@@ -10,8 +10,8 @@ public class Point {
     public void TranslateCoordinates(double x , double y)
     {
         MercatorProjection projection = new MercatorProjection();
-        double latitude = y;
-        double longitude = x;
+        double latitude = x;
+        double longitude = y;
 
         // convert to radian
         latitude = latitude * Math.PI / 180;

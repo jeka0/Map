@@ -61,7 +61,7 @@ public class JsonPars {
         }
         if(flag){
             NotNew = false;
-            String strX = array.get(0).toString(), strY = array.get(1).toString();
+            String strX = array.get(1).toString(), strY = array.get(0).toString();
             nowPoints.add(new Point(Double.parseDouble(strX),Double.parseDouble(strY)));
         }
     }
