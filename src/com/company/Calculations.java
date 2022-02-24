@@ -13,14 +13,20 @@ public class Calculations {
     {
         for(Tweet tweet: db.Tweets)
         {
-            Pattern pattern = Pattern.compile("\\w+\\s\\w+|\\w+\\-\\w+|\\w\\s\\w+\\s\\w+|\\w+");
-            Matcher matcher = pattern.matcher(tweet.message);
-
-            while (matcher.find())
+            Pattern pattern1 = Pattern.compile("\\w+\\-\\w+|\\s\\w\\s\\w+\\s\\w+\\s|\\s\\w+\\s\\w+\\s|\\w+");
+            Pattern pattern2 = Pattern.compile("\\w+");
+            Matcher matcher1 = pattern1.matcher(tweet.message);
+            Matcher matcher2 = pattern2.matcher(tweet.message);
+            Matcher matcher = matcher1;
+            int start = 0;
+            while (matcher.find(start))
             {
                 String str = matcher.group();
                 Double value =db.map.get(str);
-                if(value!=null)tweet.mood+=value;else matcher=matcher.reset();
+                if(value!=null){tweet.mood+=value;start=matcher.end();matcher =matcher1;}else
+                {
+                    if(matcher.equals(matcher2)){start=matcher.end();matcher = matcher1;}else matcher = matcher2;
+                }
             }
             System.out.println(tweet.mood);
         }
