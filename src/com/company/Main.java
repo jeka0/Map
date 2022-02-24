@@ -22,6 +22,8 @@ public class Main {
         tPars.ReadFile("Data\\cali_tweets2014.txt");
         parsCSV.ReadFile("Data\\sentiments.csv");
         Calculations.DetermineMoodOfMessage();
+        Calculations.CreatePolygons();
+        Calculations.DetermineMoodOfState();
 
         ChangeStatesPosition(DB.db.States);
         GUI app = new GUI();

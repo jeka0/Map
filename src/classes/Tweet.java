@@ -17,7 +17,7 @@ public class Tweet {
     private void ParsLine(String line)
     {
         line = line.replace("_","");
-        Pattern pattern = Pattern.compile("\\[.+\\,\\s.+\\]|\\d+\\-\\d+\\-\\d+|\\d+\\:\\d+\\:\\d+|[\\@\\w].+");
+        Pattern pattern = Pattern.compile("\\[.+\\,\\s.+\\]|\\d+\\-\\d+\\-\\d+|\\d+\\:\\d+\\:\\d+|[\\@\\w\\#].+");
         Matcher matcher = pattern.matcher(line);
         ArrayList<String> strs = new ArrayList<>();
         while (matcher.find()) { strs.add(matcher.group()); }
