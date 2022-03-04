@@ -1,15 +1,34 @@
 package classes;
 
 import java.awt.*;
+import java.awt.geom.Point2D;
 import java.util.LinkedList;
 
 public class State {
     public LinkedList<LinkedList<Point>> Border = new LinkedList<>();
     public LinkedList<Polygon> polygons = new LinkedList<>();
+    public Point2D.Double center;
     public double mood;
     public String Name;
     public State(){}
-    public State(String Name,LinkedList<LinkedList<Point>> Border){this.Name = Name; this.Border = Border;}
+    public State(String Name,LinkedList<LinkedList<Point>> Border)
+    {
+        this.Name = Name;
+        this.Border = Border;
+    }
+    public void FindCenter()
+    {
+        double maxX=0,minX=0,maxY=0,minY=0;
+        Polygon max = new Polygon();
+        for(Polygon polygon : polygons) {if(polygon.npoints>max.npoints)max = polygon;}
+        for(int i =0;i<max.npoints;i++)
+        {
+            if(i==0){minX=max.xpoints[i];minY=max.ypoints[i];}
+            if(max.xpoints[i]>maxX)maxX=max.xpoints[i];
+            if(max.ypoints[i]>maxY)maxY=max.ypoints[i];
+        }
+        center = new Point2D.Double((maxX+minX)/2-25,(maxY+minY)/2);
+    }
     public void Increase(double num)
     {
         for(Polygon polygon:polygons)

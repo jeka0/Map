@@ -1,12 +1,10 @@
 package com.company;
 
-import classes.Point;
 import classes.Tweet;
 import classes.State;
 import database.DB;
 
 import java.awt.*;
-import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -50,7 +48,6 @@ public class Calculations {
                     if (polygon.contains(tweet.location.XY)) state.mood += tweet.mood;
                 }
             }
-            System.out.println(state.Name + " " + state.mood);
         }
     }
 }
